@@ -1,21 +1,6 @@
-#include <algorithm>
+#include "remove.hpp"
 #include <iostream>
 #include <vector>
-
-template <typename iterator, typename Type>
-iterator remove_v2(iterator begin, iterator end, const Type& value) {
-    iterator find_iter = find(begin, end, value);
-
-    if (find_iter != end) {
-        for (iterator it = find_iter; it != end; it++) {
-            if (*it != value) {
-                *find_iter = std::move(*it);
-                find_iter++;
-            }
-        }
-    }
-    return find_iter;
-}
 
 int main() {
     std::vector<int> v{1, 6, 2, 7, 7, 5};
@@ -25,7 +10,14 @@ int main() {
         std::cout << x << ' ';
     }
 
-    std::cout<<std::endl;
+    std::cout << std::endl;
+    std::cout << *it << std::endl;
+
+    std::string str1="ababab";
+   remove_v2(str1.begin(),str1.end(),'a');
+
+   std::cout<<str1<<std::endl;
+
 
     return 0;
 }
