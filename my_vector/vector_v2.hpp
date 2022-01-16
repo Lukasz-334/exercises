@@ -4,27 +4,40 @@
 
 template <typename T>
 class vector {
+public:
     size_t size_;
     T* wsk;
-   
 
 public:
- static int numberOfObjects;
+    static int numberOfObjects;
     vector()
-        : size_(0), wsk{nullptr}{
+        : size_(0), wsk{nullptr} {
         numberOfObjects++;
     };
 
     vector(int s)
         : size_(s),
-        wsk{new T[s]}
-    {
+          wsk{new T[s]} {
         for (int i = 0; i < s; i++) {
             wsk[i] = 0;
         }
     }
 
-    vector(std::initializer_list<T>lst)
+    vector(const vector& vec)
+        : size_(vec.size()),
+
+          wsk{new T[size_]}
+    {
+        for(size_t i=0;i<size_;i++){
+           wsk[i]=vec.wsk[i];
+
+        }
+        
+    }
+
+
+
+    vector(std::initializer_list<T> lst)
         : size_{lst.size()},
           wsk{new T[size_]} {
         std::copy(lst.begin(), lst.end(), wsk);
@@ -34,10 +47,14 @@ public:
         return size_;
     }
 
+    T& operator[](int el){
+        return wsk[el];
+    }
+
     ~vector() {
         delete[] wsk;
         numberOfObjects--;
     }
 };
-template<typename T>
-int vector<T>::numberOfObjects=0;
+template <typename T>
+int vector<T>::numberOfObjects = 0;
