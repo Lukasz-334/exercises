@@ -26,17 +26,23 @@ public:
     vector(const vector& vec)
         : size_(vec.size()),
 
-          wsk{new T[size_]}
-    {
-        for(size_t i=0;i<size_;i++){
-           wsk[i]=vec.wsk[i];
-
+          wsk{new T[size_]} {
+        for (size_t i = 0; i < size_; i++) {
+            wsk[i] = vec.wsk[i];
         }
-        
     }
 
-
-
+    vector& operator=(const vector& vec) {
+        if (&vec != this) {
+            delete[] wsk;
+            size_ = vec.size();
+            wsk = new T[size_];
+            for (size_t i = 0; i < size_; i++) {
+                wsk[i] = vec.wsk[i];
+            }
+        }
+        return *this;
+    }
     vector(std::initializer_list<T> lst)
         : size_{lst.size()},
           wsk{new T[size_]} {
@@ -47,7 +53,7 @@ public:
         return size_;
     }
 
-    T& operator[](int el){
+    T& operator[](int el) {
         return wsk[el];
     }
 
