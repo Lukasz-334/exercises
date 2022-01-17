@@ -43,6 +43,26 @@ public:
         }
         return *this;
     }
+
+    vector(vector&& vec)
+        : size_(vec.size()),
+          wsk(vec.wsk) {
+        vec.wsk = nullptr;
+        vec.size_ = 0;
+    }
+
+    vector& operator=(const vector&& vec) {
+        if (&vec != *this) {
+            delete[] wsk;
+
+            wsk = vec.wsk;
+            size_ = vec.size();
+
+            vec.wsk = nullptr;
+            vec.size_=0;
+        }
+    }
+
     vector(std::initializer_list<T> lst)
         : size_{lst.size()},
           wsk{new T[size_]} {

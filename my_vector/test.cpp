@@ -35,3 +35,36 @@ TEST(copyingAssignmentOperator, correctCopyingOfData) {
     ASSERT_EQ(v1[0], 1);
     ASSERT_EQ(v1[4], 5);
 }
+
+TEST(overloadedAccessAndAssignmentOperator, correctAccessAndAssignment) {
+    vector<int> v(5);
+    v[0] = 2;
+    v[1] = 6;
+    v[4] = 457;
+
+    ASSERT_EQ(v[0], 2);
+    ASSERT_EQ(v[1], 6);
+    ASSERT_EQ(v[4], 457);
+}
+
+TEST(moveConstructor, testTheCorrectnessOfTheMoveElements) {
+    vector<int> v1{3, 5, 6, 1, 6};
+    vector<int> v2 = std::move(v1);
+
+    ASSERT_EQ(v2[0], 3);
+    ASSERT_EQ(v2[4], 6);
+    ASSERT_EQ(v2[1], 5);
+    ASSERT_EQ(v1.wsk, nullptr);
+    ASSERT_EQ(v1.size(), 0);
+}
+
+
+TEST(moveAssignmentOperator,testOfCorrectnessOfMovingElements ){
+
+
+
+
+
+
+    
+}
