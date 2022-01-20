@@ -51,16 +51,17 @@ public:
         vec.size_ = 0;
     }
 
-    vector& operator=(const vector&& vec) {
-        if (&vec != *this) {
+    vector& operator=(vector&& vec) {
+        if (&vec != this) {
             delete[] wsk;
 
             wsk = vec.wsk;
             size_ = vec.size();
 
             vec.wsk = nullptr;
-            vec.size_=0;
+            vec.size_ = 0;
         }
+        return *this;
     }
 
     vector(std::initializer_list<T> lst)
@@ -75,6 +76,14 @@ public:
 
     T& operator[](int el) {
         return wsk[el];
+    }
+
+    T& at(const size_t value) {
+        return wsk[value];
+    }
+
+    T& front() const {
+        return wsk[0];
     }
 
     ~vector() {

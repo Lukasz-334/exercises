@@ -61,10 +61,27 @@ TEST(moveConstructor, testTheCorrectnessOfTheMoveElements) {
 
 TEST(moveAssignmentOperator,testOfCorrectnessOfMovingElements ){
 
+     vector<int> v1{3, 5, 6, 1, 6};
+     vector<int> v2{4,6,1,3};
+     v2=std::move(v1);
+     
+     ASSERT_EQ(v2[0], 3);
+     ASSERT_EQ(v2[4], 6);
+     ASSERT_EQ(v2[1], 5);
+     ASSERT_EQ(v1.wsk, nullptr);
+     ASSERT_EQ(v1.size(), 0);
 
+}
 
+TEST (atFunction, displayingAndWritingDataToVector){
 
+     vector<int>v{4,5,3,1,9};
+     v.at(1)=45;
+     v.at(2)=78;
+     int value  = v.at(3);
 
-
-    
+     ASSERT_EQ(v[1], 45);
+     ASSERT_EQ(v[2], 78);
+     ASSERT_EQ(value, 1);
+     
 }
