@@ -4,10 +4,17 @@
 int main(){
 
 
-vector<int>v;
+vector<int>v{1,5,5};
 
 
-std::cout<<v.front();
+try{
+v.at(5);
+
+}catch(std::out_of_range const & re){
+    std::cout<<"wyj złap";
+   std::cout<<re.what();
+
+}
 
 
 

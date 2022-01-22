@@ -1,6 +1,7 @@
 #pragma once
 #include <initializer_list>
 #include <iostream>
+#include <stdexcept>
 
 template <typename T>
 class vector {
@@ -79,7 +80,12 @@ public:
     }
 
     T& at(const size_t value) {
+        if(value>=size_){
+        throw std::out_of_range("item outside the scope of the container ");
+        }
+        else{
         return wsk[value];
+        }
     }
 
     T& front() const {
