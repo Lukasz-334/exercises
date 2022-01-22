@@ -88,7 +88,11 @@ TEST(atFunction, displayingAndWritingDataToVector) {
         exc = true;
     }
     ASSERT_EQ(exc, true);
-   
+}
 
+TEST(frontFunction, testOfCorrectAccessToTheFirstElement) {
+    vector<int> v{4, 5, 3, 1, 9};
+    int value = v.front();
 
+    ASSERT_EQ(value, 4);
 }
