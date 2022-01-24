@@ -7,14 +7,12 @@ int main(){
 vector<int>v{1,5,5};
 
 
-try{
-std::cout<<v.at(2);
+v.front()=16;
+std::cout<<v.front();
 
-}catch(std::out_of_range const & re){
-  
-   std::cout<<re.what();
-
-}
+std::cout<<std::endl;
+v.back()=12;
+std::cout<<v.back();
 
 
 

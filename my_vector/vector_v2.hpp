@@ -6,7 +6,7 @@
 template <typename T>
 class vector {
 public:
-    size_t size_;
+    size_t size_=0;
     T* wsk;
 
 public:
@@ -90,6 +90,10 @@ public:
 
     T& front() const {
         return wsk[0];
+    }
+
+    T& back() const{
+        return wsk[size_-1];
     }
 
     ~vector() {

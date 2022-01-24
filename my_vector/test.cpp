@@ -96,3 +96,10 @@ TEST(frontFunction, testOfCorrectAccessToTheFirstElement) {
 
     ASSERT_EQ(value, 4);
 }
+
+TEST(backFunction, testOfCorrectAccessToTheLastElement) {
+    vector<int> v{4, 5, 3, 1, 9};
+    int value = v.back();
+
+    ASSERT_EQ(value, 9);
+}
