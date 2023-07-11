@@ -9,13 +9,16 @@ auto sum(const T1 lhs, const T2 rhs) -> decltype(lhs + rhs) {
 }
 
 template <typename T1, typename T2, typename T3>
-void Test(const T1 lhs, const T2 rhs, const T3 result) {
+void Test(const T1 lhs, const T2 rhs, const T3 result, const double epsilon = 1e-7) {
+    bool correctResult;
     auto resultSum = sum(lhs, rhs);
     if (std::is_floating_point<T3>::value) {
-        resultSum = std::round(resultSum * 10) / 10.0;
-    }
+        correctResult = std::abs(result - resultSum) <= epsilon;
 
-    if (resultSum != result) {
+    } else {
+        correctResult = (result == resultSum);
+    }
+    if (correctResult == false) {
         std::cout << "Wrong " << lhs << " + " << rhs << " != " << result << " (" << resultSum << ")" << std::endl;
     }
 }
@@ -34,7 +37,7 @@ int main() {
         double rhs = 12.6;
         double result = 22.8;
 
-        Test(lhs, rhs, result);
+        Test(lhs, rhs, result, 1e-6);
     }
 
     {
@@ -55,3 +58,4 @@ int main() {
 
     return 0;
 }
+
