@@ -1,16 +1,25 @@
-#include <string>
 #include "parseQuantity.hpp"
 
 int parseQuantity(const char* str) {
     std::string number;
+    long long parsed_number = 0;
 
-    while (std::isdigit(*str)) {
-        number += *str;
-        str++;
+    for (int i = 1; i <= 10; i++) {
+        if (std::isdigit(*str)) {
+            number += *str;
+            str++;
+        } else {
+            break;
+        }
     }
 
     if (number.empty()) {
         return 0;
     }
-    return std::stoi(number);
+
+    parsed_number = std::stoll(number);
+    if (parsed_number < INT_MAX) {
+        return static_cast<int>(parsed_number);
+    }
+    return INT_MAX;
 }
