@@ -18,8 +18,9 @@ int parseQuantity(const char* str) {
     }
 
     parsed_number = std::stoll(number);
-    if (parsed_number < INT_MAX) {
+    if (parsed_number <= INT_MAX) {
         return static_cast<int>(parsed_number);
     }
-    return INT_MAX;
+    number.erase(9);
+    return std::stoi(number);
 }
